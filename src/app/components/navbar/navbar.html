@@ -1,0 +1,42 @@
+<!-- <p>navbar works!</p> -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <div class="navbar-brand" routerLink="/">Navbar</div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/mybookings">MyBookings</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="!(isLoggedin$ | async)"
+            routerLink="/login"
+            (click)="authService.login()"
+            >Login</a
+          >
+          <a class="nav-link" *ngIf="isLoggedin$ | async" (click)="authService.logout()">
+            LogOut
+          </a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="isLoggedin$ | async">
+          Welcome! {{ authService.userDetails$ | async }}
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>

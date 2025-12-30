@@ -1,0 +1,17 @@
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 1050;
+  display: block; /* 🔑 hidden initially */
+}
+
+.custom-modal-content {
+  background: #fff;
+  padding: 16px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}

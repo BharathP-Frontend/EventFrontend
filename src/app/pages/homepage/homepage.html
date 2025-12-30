@@ -1,0 +1,54 @@
+<div class="container-fluid my-3">
+  <h2 class="text-center my-3">Book Your Events Now</h2>
+
+  <div class="container">
+    <!-- <p>lala Bheemla</p> -->
+    <div class="row g-4 mt-3">
+      <!-- @for(event of eventsData;track event.eventId){
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="event.image || 'assets/no-image.png'"
+            class="card-img-top"
+            alt="{{ event.eventName }}"
+          />
+
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ event.eventName }}</h5>
+            <p class="card-text">
+              {{ event.startDate }} –
+              {{ event.endDate }}
+            </p>
+            <p class="card-text">📍 {{ event.location }}</p>
+            <button type="button" class="btn btn-info" [routerLink]="['/event', event.eventId]">
+              About
+            </button>
+          </div>
+        </div>
+      </div>
+
+      } -->
+      <div class="col-12 col-sm-6 col-md-4 col-lg-4" *ngFor="let event of eventsData">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="event.image || 'assets/no-image.png'"
+            class="card-img-top"
+            alt="{{ event.eventName }}"
+          />
+
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ event.eventName }}</h5>
+            <p class="card-text">
+              {{ event.startDate }} –
+              {{ event.endDate }}
+            </p>
+            <p class="card-text">📍 {{ event.location }}</p>
+            <button type="button" class="btn btn-info" [routerLink]="['/event', event.eventId]">
+              About
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

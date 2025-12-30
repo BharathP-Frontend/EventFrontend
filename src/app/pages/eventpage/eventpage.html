@@ -1,0 +1,64 @@
+<div class="container-fluid my-3">
+  <div class="container" *ngIf="myevent$ | async as e">
+    <div class="row g-3">
+      <!-- LEFT COLUMN: Event Details (Object by ID) -->
+      <div class="col-12 col-md-6">
+        <div class="card h-100 shadow-sm">
+          <img [src]="e.image" class="card-img-top" alt="{{ e.eventName }}" />
+
+          <div class="card-body">
+            <h4>{{ e.eventName }}</h4>
+            <p>{{ e.startDate }} – {{ e.endDate }}</p>
+            <p>📍 {{ e.location }}</p>
+            <p>💰 {{ e.price }}</p>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="openPopup(e)"
+              *ngIf="authService.isLoggedin$ | async"
+            >
+              Book Now
+            </button>
+            <div *ngIf="!(authService.isLoggedin$ | async)">Please Login</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: NEXT TWO EVENTS -->
+      <div class="col-12 col-md-6">
+        <div class="row g-3 h-100" *ngIf="myTwoEvents$ | async as twoEvents">
+          <div class="col-12" *ngFor="let ev of twoEvents">
+            <div class="card shadow-sm h-100">
+              <img [src]="ev.image" class="card-img-top" alt="{{ ev.eventName }}" />
+
+              <div class="card-body">
+                <h5 class="card-title">{{ ev.eventName }}</h5>
+                <p class="mb-1">📍 {{ ev.location }}</p>
+                <p class="mb-1">🕒 {{ ev.startTime }}</p>
+                <p class="mb-0">💰 {{ ev.price }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="custom-modal" #bookingmodal *ngIf="isOpen">
+  <div class="custom-modal-content">
+    <div class="custom-modal-header">
+      <h3>Event Details</h3>
+    </div>
+    <div class="custom-modal-main">
+      <p>{{ selectedEvent.eventName }}</p>
+      <p>{{ selectedEvent.price }}</p>
+      <p>{{ selectedEvent.location }}</p>
+    </div>
+    <div class="custom-modal-footer">
+      <button (click)="closePopup()">Cancel</button>
+      <button (click)="postData(selectedEvent)">Confirm</button>
+    </div>
+  </div>
+</div>
